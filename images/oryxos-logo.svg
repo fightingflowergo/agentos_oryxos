@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="240" viewBox="0 0 800 240" fill="none" role="img" aria-labelledby="title description">
+  <title id="title">OryxOS</title>
+  <desc id="description">A geometric oryx with two rising horns inside an open circular orbit, beside the OryxOS wordmark. Deep teal and mint represent a calm, connected Agent operating system.</desc>
+  <defs>
+    <linearGradient id="orbit" x1="52" y1="48" x2="210" y2="211" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5EEAD4"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+    <linearGradient id="face" x1="110" y1="101" x2="151" y2="182" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F0FDFA"/>
+      <stop offset="1" stop-color="#99F6E4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- A light backing keeps the wordmark legible in light and dark Markdown themes. -->
+  <rect x="1" y="1" width="798" height="238" rx="32" fill="#F8FAFC"/>
+  <rect x="1" y="1" width="798" height="238" rx="32" stroke="#E2E8F0" stroke-width="2"/>
+
+  <!-- The open O is the runtime; the oryx is the agent within it. -->
+  <rect x="25" y="25" width="190" height="190" rx="48" fill="#0B2833"/>
+  <path d="M80 69A70 70 0 1 0 178 87" stroke="url(#orbit)" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="80" cy="69" r="6" fill="#5EEAD4"/>
+  <circle cx="178" cy="87" r="6" fill="#5EEAD4"/>
+
+  <!-- Long, swept horns are the defining silhouette of an oryx. -->
+  <path d="M109 116C104 94 96 62 91 42C102 57 116 88 120 109L109 116Z" fill="#5EEAD4"/>
+  <path d="M131 109C135 86 145 58 155 40C153 62 147 94 141 116L131 109Z" fill="#5EEAD4"/>
+  <path d="M108 121L79 105L89 133L108 140Z" fill="#2DD4BF"/>
+  <path d="M141 121L170 105L160 133L141 140Z" fill="#2DD4BF"/>
+  <path d="M108 113L125 103L142 113L147 141L132 172L125 181L118 172L103 141L108 113Z" fill="url(#face)"/>
+  <path d="M125 116L116 143L125 170L134 143L125 116Z" fill="#0B2833"/>
+  <path d="M108 132L118 137L113 143L108 132Z" fill="#0B2833"/>
+  <path d="M142 132L132 137L137 143L142 132Z" fill="#0B2833"/>
+  <path d="M120 170H130L125 178L120 170Z" fill="#0B2833"/>
+
+  <!-- A restrained wordmark pairs the natural symbol with a technical identity. -->
+  <text x="253" y="139" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="78" font-weight="750" letter-spacing="-3" fill="#0B2833">Oryx<tspan fill="#0F766E">OS</tspan></text>
+  <path d="M257 161H302" stroke="#14B8A6" stroke-width="4" stroke-linecap="round"/>
+  <text x="318" y="167" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="3" fill="#475569">AGENT HARNESS OS</text>
+</svg>

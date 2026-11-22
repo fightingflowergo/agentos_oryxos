@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1560" viewBox="0 0 1600 1560" role="img" aria-labelledby="title desc">
+<title id="title">OryxOS 单机运行时目标架构</title>
+<desc id="desc">CLI、REST API 与定时任务进入统一 AgentService。引擎由上下文组装、ReActLoop 与 ToolExecutor 组成，协调 Provider、Memory 和工具能力。配置文件与 SQLite 提供底层状态。外部模型、MCP Server、业务与通知系统位于应用边界之外。本图描述目标设计，不代表功能已实现。</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/></marker>
+  <marker id="orange-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#ea580c"/></marker>
+</defs>
+<g font-family="Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+<rect x="0" y="0" width="1600" height="1560" rx="0" fill="#f8fafc" stroke="#f8fafc" stroke-width="1.5" />
+<rect x="52" y="48" width="8" height="58" rx="4" fill="#f97316" stroke="#f97316" stroke-width="1.5" />
+<text x="80" y="86" font-size="44" font-weight="800" fill="#0f172a" text-anchor="start">OryxOS</text>
+<text x="296" y="84" font-size="27" font-weight="500" fill="#475569" text-anchor="start">Agent Harness OS</text>
+<text x="80" y="128" font-size="23" font-weight="400" fill="#64748b" text-anchor="start">一个目录定义一个 Agent，一个底座运行和管理一群 Agent。</text>
+<rect x="1242" y="56" width="298" height="42" rx="21" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5" />
+<text x="1391" y="84" font-size="18" font-weight="600" fill="#c2410c" text-anchor="middle">目标架构  /  单机运行时</text>
+<rect x="220" y="176" width="1320" height="1088" rx="24" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+<text x="252" y="213" font-size="17" font-weight="700" fill="#64748b" text-anchor="start">ORYXOS APPLICATION</text>
+<text x="1508" y="213" font-size="17" font-weight="400" fill="#64748b" text-anchor="end">JDK 21 · Spring Boot · 单个可执行 JAR</text>
+<rect x="52" y="250" width="38" height="38" rx="10" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5" />
+<text x="71" y="276" font-size="18" font-weight="700" fill="#c2410c" text-anchor="middle">01</text>
+<text x="52" y="320" font-size="24" font-weight="700" fill="#0f172a" text-anchor="start">接入与触发</text>
+<text x="52" y="348" font-size="15" font-weight="400" fill="#64748b" text-anchor="start">ENTRY POINTS</text>
+<rect x="268" y="246" width="360" height="94" rx="16" fill="#ffffff" stroke="#dbe3ed" stroke-width="1.5" />
+<text x="292" y="284" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">CLI Channel</text>
+<text x="292" y="318" font-size="20" font-weight="400" fill="#475569" text-anchor="start">本地交互与调试</text>
+<rect x="680" y="246" width="360" height="94" rx="16" fill="#ffffff" stroke="#dbe3ed" stroke-width="1.5" />
+<text x="704" y="284" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">REST API</text>
+<text x="704" y="318" font-size="20" font-weight="400" fill="#475569" text-anchor="start">业务系统 HTTP 接入</text>
+<rect x="1092" y="246" width="360" height="94" rx="16" fill="#ffffff" stroke="#dbe3ed" stroke-width="1.5" />
+<text x="1116" y="284" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">AgentScheduler</text>
+<text x="1116" y="318" font-size="20" font-weight="400" fill="#475569" text-anchor="start">cron 定时触发</text>
+<path d="M 448 340 V 366" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 860 340 V 366" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 1272 340 V 366" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 448 366 H 1272" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 860 366 V 394" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="268" y="394" width="1184" height="74" rx="16" fill="#0f172a" stroke="#0f172a" stroke-width="1.5" />
+<text x="298" y="440" font-size="27" font-weight="700" fill="#ffffff" text-anchor="start">AgentService</text>
+<text x="1422" y="439" font-size="20" font-weight="400" fill="#cbd5e1" text-anchor="end">统一处理入口 · Profile 上下文 · Session 生命周期</text>
+<path d="M 860 468 V 514" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="52" y="534" width="38" height="38" rx="10" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5" />
+<text x="71" y="560" font-size="18" font-weight="700" fill="#c2410c" text-anchor="middle">02</text>
+<text x="52" y="604" font-size="24" font-weight="700" fill="#0f172a" text-anchor="start">运行引擎</text>
+<text x="52" y="632" font-size="15" font-weight="400" fill="#64748b" text-anchor="start">RUNTIME ENGINE</text>
+<rect x="248" y="494" width="1224" height="238" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+<rect x="268" y="514" width="360" height="132" rx="16" fill="#ffffff" stroke="#dbe3ed" stroke-width="1.5" />
+<text x="292" y="552" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">Prompt &amp; Context</text>
+<text x="292" y="586" font-size="20" font-weight="400" fill="#475569" text-anchor="start">PromptBuilder · ContextLoader</text>
+<text x="292" y="616" font-size="20" font-weight="400" fill="#475569" text-anchor="start">Agent 正文 / Bootstrap / Skill</text>
+<rect x="680" y="514" width="360" height="132" rx="16" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5" />
+<text x="704" y="552" font-size="25" font-weight="700" fill="#c2410c" text-anchor="start">ReActLoop</text>
+<text x="704" y="586" font-size="20" font-weight="400" fill="#475569" text-anchor="start">Reason → Act → Observe</text>
+<text x="704" y="616" font-size="20" font-weight="400" fill="#475569" text-anchor="start">自实现循环 · 迭代次数受控</text>
+<rect x="1092" y="514" width="360" height="132" rx="16" fill="#ffffff" stroke="#dbe3ed" stroke-width="1.5" />
+<text x="1116" y="552" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">ToolExecutor</text>
+<text x="1116" y="586" font-size="20" font-weight="400" fill="#475569" text-anchor="start">权限检查 · 执行 · 结果封装</text>
+<text x="1116" y="616" font-size="20" font-weight="400" fill="#475569" text-anchor="start">成功 / 失败均记录审计</text>
+<path d="M 628 578 H 680" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 1040 554 H 1092" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#orange-arrow)"/>
+<path d="M 1092 616 H 1040" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#orange-arrow)"/>
+<text x="860" y="700" font-size="21" font-weight="400" fill="#64748b" text-anchor="middle">Spring AI 仅做模型协议与工具 Schema 适配，自动工具执行关闭。</text>
+<path d="M 860 732 V 762" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 448 762 H 1272" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 448 762 V 798" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 860 762 V 798" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 1272 762 V 798" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="52" y="814" width="38" height="38" rx="10" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5" />
+<text x="71" y="840" font-size="18" font-weight="700" fill="#c2410c" text-anchor="middle">03</text>
+<text x="52" y="884" font-size="24" font-weight="700" fill="#0f172a" text-anchor="start">运行能力</text>
+<text x="52" y="912" font-size="15" font-weight="400" fill="#64748b" text-anchor="start">CAPABILITIES</text>
+<rect x="268" y="798" width="360" height="148" rx="16" fill="#ffffff" stroke="#dbe3ed" stroke-width="1.5" />
+<text x="292" y="836" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">ProviderService</text>
+<text x="292" y="870" font-size="20" font-weight="400" fill="#475569" text-anchor="start">显式 name → ChatModel 映射</text>
+<text x="292" y="900" font-size="20" font-weight="400" fill="#475569" text-anchor="start">Spring AI / Alibaba</text>
+<rect x="680" y="798" width="360" height="148" rx="16" fill="#ffffff" stroke="#dbe3ed" stroke-width="1.5" />
+<text x="704" y="836" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">MemoryService</text>
+<text x="704" y="870" font-size="20" font-weight="400" fill="#475569" text-anchor="start">会话 + 长期记忆统一门面</text>
+<text x="704" y="900" font-size="20" font-weight="400" fill="#475569" text-anchor="start">核心 / 归档分区</text>
+<rect x="1092" y="798" width="360" height="148" rx="16" fill="#ffffff" stroke="#dbe3ed" stroke-width="1.5" />
+<text x="1116" y="836" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">Tool System</text>
+<text x="1116" y="870" font-size="20" font-weight="400" fill="#475569" text-anchor="start">ToolRegistry · 内置工具 · MCP</text>
+<text x="1116" y="900" font-size="20" font-weight="400" fill="#475569" text-anchor="start">WhitelistSandbox · Notify</text>
+<path d="M 448 946 V 980" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 860 946 V 980" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 1272 946 V 980" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 448 980 H 1272" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 554 980 V 1020" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 1166 980 V 1020" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="52" y="1040" width="38" height="38" rx="10" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5" />
+<text x="71" y="1066" font-size="18" font-weight="700" fill="#c2410c" text-anchor="middle">04</text>
+<text x="52" y="1110" font-size="24" font-weight="700" fill="#0f172a" text-anchor="start">配置与状态</text>
+<text x="52" y="1138" font-size="15" font-weight="400" fill="#64748b" text-anchor="start">PERSISTENCE</text>
+<rect x="268" y="1020" width="572" height="146" rx="16" fill="#ffffff" stroke="#dbe3ed" stroke-width="1.5" />
+<text x="292" y="1058" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">工作区文件</text>
+<text x="292" y="1092" font-size="20" font-weight="400" fill="#475569" text-anchor="start">AGENT.md · Bootstrap · MEMORY.md</text>
+<text x="292" y="1122" font-size="20" font-weight="400" fill="#475569" text-anchor="start">公共 Skill / Agent 受控软链接绑定</text>
+<rect x="880" y="1020" width="572" height="146" rx="16" fill="#ffffff" stroke="#dbe3ed" stroke-width="1.5" />
+<text x="904" y="1058" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">SQLite / 持久化实现</text>
+<text x="904" y="1092" font-size="20" font-weight="400" fill="#475569" text-anchor="start">Session · tool_invocations · llm_calls</text>
+<text x="904" y="1122" font-size="20" font-weight="400" fill="#475569" text-anchor="start">调度状态与执行历史 · Flyway 迁移</text>
+<rect x="268" y="1192" width="1184" height="44" rx="10" fill="#e2e8f0" stroke="#e2e8f0" stroke-width="1.5" />
+<text x="860" y="1221" font-size="19" font-weight="400" fill="#475569" text-anchor="middle">应用层白名单：文件路径 / 命令 / 网络校验；不代表容器或多租户强隔离。</text>
+<path d="M 860 1264 V 1304" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+<text x="884" y="1294" font-size="17" font-weight="400" fill="#64748b" text-anchor="start">按配置连接外部服务</text>
+<path d="M 448 1304 H 1272" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<path d="M 448 1304 V 1342" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+<path d="M 860 1304 V 1342" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+<path d="M 1272 1304 V 1342" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" stroke-dasharray="7 6"/>
+<rect x="52" y="1352" width="38" height="38" rx="10" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5" />
+<text x="71" y="1378" font-size="18" font-weight="700" fill="#c2410c" text-anchor="middle">05</text>
+<text x="52" y="1422" font-size="24" font-weight="700" fill="#0f172a" text-anchor="start">外部集成</text>
+<text x="52" y="1450" font-size="15" font-weight="400" fill="#64748b" text-anchor="start">INTEGRATIONS</text>
+<rect x="268" y="1342" width="360" height="108" rx="16" fill="#ffffff" stroke="#dbe3ed" stroke-width="1.5" />
+<text x="292" y="1380" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">LLM Provider</text>
+<text x="292" y="1414" font-size="20" font-weight="400" fill="#475569" text-anchor="start">模型 API / 企业受控推理</text>
+<rect x="680" y="1342" width="360" height="108" rx="16" fill="#ffffff" stroke="#dbe3ed" stroke-width="1.5" />
+<text x="704" y="1380" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">MCP Server</text>
+<text x="704" y="1414" font-size="20" font-weight="400" fill="#475569" text-anchor="start">企业工具与连接器</text>
+<rect x="1092" y="1342" width="360" height="108" rx="16" fill="#ffffff" stroke="#dbe3ed" stroke-width="1.5" />
+<text x="1116" y="1380" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">业务系统与通知</text>
+<text x="1116" y="1414" font-size="20" font-weight="400" fill="#475569" text-anchor="start">企业 API / webhook 目标</text>
+<path d="M 52 1488 H 1540" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="52" y="1527" font-size="18" font-weight="400" fill="#64748b" text-anchor="start">实线：内部处理与协作     虚线：应用外部集成</text>
+<text x="1540" y="1527" font-size="18" font-weight="400" fill="#64748b" text-anchor="end">设计示意 · 当前尚无运行时实现</text>
+</g></svg>

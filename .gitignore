@@ -1,0 +1,15 @@
+# Maven build output
+**/target/
+
+# Local runtime state and credentials
+.oryxos/
+.env
+.env.*
+!.env.example
+
+# IDE and operating system files
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
